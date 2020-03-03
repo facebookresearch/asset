@@ -1,4 +1,4 @@
-# ASSET: A Dataset for Tuning and Evaluation of Sentence Simplification Models with Multiple Rewriting Transformations 
+# ASSET Corpus 
 
 Dataset for evaluating Text Simplification systems with multiple rewriting transformations.
 
