@@ -1,0 +1,332 @@
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ </head>
+
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<style>
+
+#consent-form-container{
+	background: #fff;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	height:100%;
+	width:100%;
+    z-index:999;
+}
+
+</style>
+
+<script>
+ function consentFormSubmitted(){
+ 	document.getElementById("consent-form-container").style.display = "none";
+	document.getElementById("task-container").style.display = "block";
+ }
+</script>
+
+<div class="consent-form container" id="consent-form-container">
+	<h2>Can you rate the quality of simplified sentences in English?</h2>
+
+	<h4>Information Sheet</h4>
+
+    <p>We invite fluent English speakers to participate in an experiment on rating the quality of simplified sentences. </p>
+	<p>Before you decide to participate, it is important that you understand the purpose of the research
+		you will be participating in and what will happen to the data collected from you.</p>
+	<p>The study aims to collect ratings for simplifications of sentences that originally could have been considered difficult
+        to understand by non-native speakers of English.
+        The resulting dataset will be used to develop models and metrics that could potentially produce these scores automatically.</p>
+	<p>Participants must be:
+		<ul>
+			<li>Over 18 years of age.</li>
+			<li>Fluent English speakers; both native and non-native speakers are welcome to participate.</li>
+		</ul>
+	</p>
+	<p>
+		We expect to collect at least 10 quality ratings for each sentence pair.
+        As such, the HITs will be available until that goal is reached.
+	</p>
+	<p>
+		How will the experiment work?
+		<ul>
+			<li>You are asked to first take a Qualification Test. This will help you get familiar with the rating guidelines and submit suggestions for us. We will manually check your responses to verify that you have understood the task and will award you the Qualification if your ratings are considered suitable. In any case, you will be paid for taking the Qualification Test.</li>
+			<li>The Qualification Test consists of one pair of sentences: the original and its simplified version. We ask you to rate the quality of the simplification using three criteria: fluency, adequacy and simplicity. More details are provided in the Instructions.</li>
+			<li>If you pass the Qualification Test, you will be eligible to participate in the Rating Task. The rating guidelines will be the same, but this time you will be asked to rate 10 pairs of sentences</li>
+			<li>Each HIT should not take more than 10 minutes to complete.</li>
+		</ul>
+	</p>
+
+	<p>
+		You will be reading sentences extracted from articles in Wikipedia.
+		The nature of the sentences and their language are such that they are unlikely to cause offence, disturbance or distress to readers from a general audience.
+		However, if you feel uncomfortable with the content of any of the sentences, please let us know in the Suggestions box provided.
+	</p>
+	<p>
+		It is important to emphasize that the data collected will be made available for other researchers.
+		In addition, the results of this investigation may be published in scientific journals or conferences and may be used in further studies.
+	</p>
+	<p>
+		Finally, if you have any questions do not hesitate to contact Fernando Alva-Manchego (email: f.alva@sheffield.ac.uk).
+		Preferably, use the official Mechanical Turk mechanisms.
+	</p>
+	<p>
+		You can also contact Dr. Carolina Scarton (email: c.scarton@sheffield.ac.uk) if the task caused you any offence,
+		disturbance or distress; or you if have further complaints.
+	</p>
+
+	<p>Please read the instructions carefully.</p>
+
+	<p>Thank you,</p>
+	<p>Fernando Alva-Manchego, Carolina Scarton, and Lucia Specia</p>
+
+    <h4>Consent Form</h4>
+
+	<p>In order to participate in this experiment, you must:</p>
+	<ul>
+		<li>Be at least 18 years old and competent to provide consent.</li>
+		<li>Have read and understood the the Information Sheet explaining the research project.</li>
+		<li>Agree for the data collected to be used in anonymised way in the future</li>
+		<li>Agree to take part in the research previously described.</li>
+	</ul>
+	<button id="consent-submit-button" type="button" class="btn btn-primary" onclick="consentFormSubmitted()">
+	I accept to participate in this research
+	</button>
+</div>
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects" id="task-container" style="display:none">
+
+    <fieldset>
+        <legend><strong>Instructions</strong></legend>
+        <p>
+            In this task you will see pairs of Original and Simplified sentences where the Simplified sentence is a proposed version of the Original one,
+            but that is easier to understand by non-native speakers of English.
+            This means that it uses easier English while also maintaining fluency and grammatically.
+            The goal of the present task is to evaluate the Simplified sentences along three dimensions:
+            adequacy (or meaning preservation), fluency (or grammaticality) and simplicity.
+        </p>
+        <p>
+            Read each pair of sentences and <strong>use the sliders to indicate how
+            much you agree with the statements</strong> (0 = Strongly disagree, 100 = Strongly agree)
+        </p>
+        <p>
+            Some clarifications:
+            <ul>
+                <li>
+                    It is valid for the Simplified version of an Original sentence to be composed of more than one sentence.
+                    Splitting a complex and long sentence into several smaller ones helps readability sometimes.
+                    However, it is up to you to judge if the splitting actually made the sentence easier to read/understand or not.
+                </li>
+                <li>
+                    Fluency should be judged looking solely at the Simplified sentence.
+                    In your rating, mainly consider the grammatical and/or spelling errors, but also 'how well' (or natural) the sentence reads.
+                    <strong>Please, do not take capitalization into consideration.</strong>
+                </li>
+                <li>
+                    Adequacy (or meaning preservation) and Simplicity should be judged looking at both the Original and Simplified versions.
+                    Judge whether or not the changes made preserved the Original meaning or not, and if they made it easier to understand.
+                    What if Original and Simplified are exactly the same? As the question in the form states, we ask you to judge if Simplified is "easier to understand" than Original.
+                    This implies that changes should have been made.
+                </li>
+                <li>
+                    It is very likely that Simplified does no have all the details that Original presented.
+                    When scoring Adequacy, it is up to you to judge the impact those changes had in the meaning of the sentence.
+                </li>
+                <li>
+                    Judging the quality of a simplification is subjective. Each person has their own opinion on what is fluent, adequate or simple.
+                    That is why we are collecting a big number of judgments, so that we can study the agreement/disagreement of the ratings.
+                    This is also why we do not provide you with examples: it is a way to prevent our own judgement biases to affect your personal judgments.
+                </li>
+        </p>
+        <p>Thank you!</p>
+    </fieldset>
+
+
+
+
+    <fieldset>
+        <legend>Sentence 1 of 6</legend>
+
+        <p><strong>Original: </strong>The second largest city of Russia and one of the world's major cities, St . Petersburg has played a vital role in Russian history.</p>
+        <p><strong>Simplified: </strong>St . Petersburg is the second largest city in Russia. St . Petersburg is one of the world's major cities. St . Petersburg has played an important role in Russian history.</p>
+        <p>
+            <ul>
+              <li>
+                <p>
+                    1) The <u><strong>Simplified</strong></u> sentence <strong>adequately expresses the meaning </strong>
+                    of the <u><strong>Original</strong></u>, perhaps omitting the least important information
+                </p>
+                <p><crowd-slider name="meaning_1" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>2) The <u><strong>Simplified</strong></u> sentence <strong>is fluent</strong>, there are no grammatical errors</p>
+                <p><crowd-slider name="fluency_1" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>
+                      3) The <u><strong>Simplified</strong></u> sentence <strong>is easier to understand</strong>
+                      than the <u><strong>Original</strong></u> sentence
+                  </p>
+                <p><crowd-slider name="simplicity_1" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sentence 2 of 6</legend>
+
+        <p><strong>Original: </strong>US and European regulators gave approval to the purchase in February.</p>
+        <p><strong>Simplified: </strong>International regulartors on Friday gave the approval purchase.</p>
+        <p>
+            <ul>
+              <li>
+                <p>
+                    1) The <u><strong>Simplified</strong></u> sentence <strong>adequately expresses the meaning </strong>
+                    of the <u><strong>Original</strong></u>, perhaps omitting the least important information
+                </p>
+                <p><crowd-slider name="meaning_2" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>2) The <u><strong>Simplified</strong></u> sentence <strong>is fluent</strong>, there are no grammatical errors</p>
+                <p><crowd-slider name="fluency_2" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>
+                      3) The <u><strong>Simplified</strong></u> sentence <strong>is easier to understand</strong>
+                      than the <u><strong>Original</strong></u> sentence
+                  </p>
+                <p><crowd-slider name="simplicity_2" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+        </p>
+    </fieldset>
+
+
+    <fieldset>
+        <legend>Sentence 3 of 6</legend>
+
+        <p><strong>Original: </strong>There is manuscript evidence that Austen continued to work on these pieces as late as the period 1809, and that her niece and nephew, Anna and James Edward Austen, made further additions as late as 1814.</p>
+        <p><strong>Simplified: </strong>There is some proof that Austen continued to work on these pieces later in life . Her nephew and niece, James Edward and Anna Austen, may have made further additions to her work in around 1814.</p>
+        <p>
+            <ul>
+              <li>
+                <p>
+                    1) The <u><strong>Simplified</strong></u> sentence <strong>adequately expresses the meaning </strong>
+                    of the <u><strong>Original</strong></u>, perhaps omitting the least important information
+                </p>
+                <p><crowd-slider name="meaning_3" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>2) The <u><strong>Simplified</strong></u> sentence <strong>is fluent</strong>, there are no grammatical errors</p>
+                <p><crowd-slider name="fluency_3" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>
+                      3) The <u><strong>Simplified</strong></u> sentence <strong>is easier to understand</strong>
+                      than the <u><strong>Original</strong></u> sentence
+                  </p>
+                <p><crowd-slider name="simplicity_3" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sentence 4 of 6</legend>
+
+        <p><strong>Original: </strong>Wednesday afternoon, the Philippines said it had agreed with China to diplomatically resolve the dispute, according to the Associated Press.</p>
+        <p><strong>Simplified: </strong>On Wednesday, the Philippines agreed with China to solve the problem. </p>
+        <p>
+            <ul>
+              <li>
+                <p>
+                    1) The <u><strong>Simplified</strong></u> sentence <strong>adequately expresses the meaning </strong>
+                    of the <u><strong>Original</strong></u>, perhaps omitting the least important information
+                </p>
+                <p><crowd-slider name="meaning_4" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>2) The <u><strong>Simplified</strong></u> sentence <strong>is fluent</strong>, there are no grammatical errors</p>
+                <p><crowd-slider name="fluency_4" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>
+                      3) The <u><strong>Simplified</strong></u> sentence <strong>is easier to understand</strong>
+                      than the <u><strong>Original</strong></u> sentence
+                  </p>
+                <p><crowd-slider name="simplicity_4" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sentence 5 of 6</legend>
+
+        <p><strong>Original: </strong>In September 1869, O'Reilly escaped and was rescued by an American ship.</p>
+        <p><strong>Simplified: </strong>Toshihide Saito is a Japanese football player.</p>
+        <p>
+            <ul>
+              <li>
+                <p>
+                    1) The <u><strong>Simplified</strong></u> sentence <strong>adequately expresses the meaning </strong>
+                    of the <u><strong>Original</strong></u>, perhaps omitting the least important information
+                </p>
+                <p><crowd-slider name="meaning_5" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>2) The <u><strong>Simplified</strong></u> sentence <strong>is fluent</strong>, there are no grammatical errors</p>
+                <p><crowd-slider name="fluency_5" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>
+                      3) The <u><strong>Simplified</strong></u> sentence <strong>is easier to understand</strong>
+                      than the <u><strong>Original</strong></u> sentence
+                  </p>
+                <p><crowd-slider name="simplicity_5" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sentence 6 of 6</legend>
+
+        <p><strong>Original: </strong>There is manuscript evidence that Austen continued to work on these pieces as late as the period 1809, and that her niece and nephew, Anna and James Edward Austen, made further additions as late as 1814.</p>
+        <p><strong>Simplified: </strong>There is some proof that Austen continued to work on these pieces later in life . Her nephew and niece, James Edward and Anna Austen, may have made further additions to her work in around 1814.</p>
+        <p>
+            <ul>
+              <li>
+                <p>
+                    1) The <u><strong>Simplified</strong></u> sentence <strong>adequately expresses the meaning </strong>
+                    of the <u><strong>Original</strong></u>, perhaps omitting the least important information
+                </p>
+                <p><crowd-slider name="meaning_6" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>2) The <u><strong>Simplified</strong></u> sentence <strong>is fluent</strong>, there are no grammatical errors</p>
+                <p><crowd-slider name="fluency_6" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+              <li>
+                  <p>
+                      3) The <u><strong>Simplified</strong></u> sentence <strong>is easier to understand</strong>
+                      than the <u><strong>Original</strong></u> sentence
+                  </p>
+                <p><crowd-slider name="simplicity_6" min="0" max="100" required pin></crowd-slider></p>
+              </li>
+        </p>
+    </fieldset>
+
+
+
+    <h4>Suggestions (Optional)</h4>
+    <p>If you have any suggestions regarding the task, please provide them below:</p>
+    <crowd-text-area name="suggestions" placeholder="Type your suggestions here..."></crowd-text-area>
+</crowd-form>

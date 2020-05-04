@@ -1,0 +1,290 @@
+ <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ </head>
+
+
+<!-- You must include this JavaScript file -->
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+<style>
+
+#consent-form-container{
+	background: #fff;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	height:100%;
+	width:100%;
+    z-index:999;
+}
+
+</style>
+
+<script>
+ function consentFormSubmitted(){
+ 	document.getElementById("consent-form-container").style.display = "none";
+	document.getElementById("task-container").style.display = "block";
+ }
+</script>
+
+<div class="consent-form container" id="consent-form-container">
+	<h2>Can you simplify sentences for non-native speakers of English?</h2>
+
+	<h4>Information Sheet</h4>
+
+	<p> We invite fluent English speakers to participate in an experiment on simplifying sentences. </p>
+	<p>Before you decide to participate, it is important that you understand the purpose of the research
+		you will be participating in and what will happen to the data collected from you.</p>
+	<p>The study aims to collect simplifications of sentences that could be considered difficult to understand by non-native speakers of English.
+		The resulting dataset will be used to judge the quality of simplifications produced automatically by machine learning models:
+		the degree in which the automatic simplifications resemble the human-produced references serves as a quality measure.</p>
+	<p>Participants must be:
+		<ul>
+			<li>Over 18 years of age.</li>
+			<li>Fluent English speakers; both native and non-native speakers are welcome to participate.</li>
+		</ul>
+	</p>
+	<p>
+		We expect to collect up to 10 quality references simplifications for each original sentence.
+		As such, the HITs will be available until that goal is reached.
+	</p>
+	<p>
+		How will the experiment work?
+		<ul>
+			<li>You are asked to first take a Qualification Test. This will help you get familiar with the simplification guidelines and submit suggestions for us. We will manually check your responses to verify that you have understood the task and will award you the Qualification if your simplifications are considered suitable. In any case, you will be paid for taking the Qualification Test.</li>
+			<li>The Qualification Test consists of 3 original sentences for which we ask you to provide a simplification following some guidelines.</li>
+			<li>If you pass the Qualification Test, you will be eligible to participate in the Annotation Task. The simplification guidelines will be the same, but this time you will be asked to simplify 4 sentences and submit a score for how confident you are with each simplification provided. The confidence scores will not necessarily be used to approve or reject the submitted replies, but mainly to judge the difficulty of the task. So, we ask you to be honest with those confidence scores.</li>
+			<li>Each HIT should not take more than 10 minutes to complete.</li>
+		</ul>
+	</p>
+
+	<p>
+		You will be reading sentences extracted from articles in Wikipedia.
+		The nature of the sentences and their language are such that they are unlikely to cause offence, disturbance or distress to readers from a general audience.
+		However, if you feel uncomfortable with the content of any of the sentences, please let us know in the Suggestions box provided.
+	</p>
+	<p>
+		It is important to emphasize that the data collected will be made available for other researchers.
+		In addition, the results of this investigation may be published in scientific journals or conferences and may be used in further studies.
+	</p>
+	<p>
+		Finally, if you have any questions do not hesitate to contact Fernando Alva-Manchego (email: f.alva@sheffield.ac.uk).
+		Preferably, use the official Mechanical Turk mechanisms.
+	</p>
+	<p>
+		You can also contact Dr. Carolina Scarton (email: c.scarton@sheffield.ac.uk) if the task caused you any offence,
+		disturbance or distress; or you if have further complaints.
+	</p>
+
+	<p>Please read the instructions carefully.</p>
+
+	<p>Thank you,</p>
+	<p>Fernando Alva-Manchego, Carolina Scarton, and Lucia Specia</p>
+
+	<h4>Consent Form</h4>
+
+	<p>In order to participate in this experiment, you must:</p>
+	<ul>
+		<li>Be at least 18 years old and competent to provide consent.</li>
+		<li>Have read and understood the the Information Sheet explaining the research project.</li>
+		<li>Agree for the data collected to be used in anonymised way in the future</li>
+		<li>Agree to take part in the research previously described.</li>
+	</ul>
+	<button id="consent-submit-button" type="button" class="btn btn-primary" onclick="consentFormSubmitted()">
+	I accept to participate in this research
+	</button>
+</div>
+
+<!-- You must include crowd-form so that your task submits answers to MTurk -->
+<crowd-form answer-format="flatten-objects" id="task-container" style="display:none">
+     <crowd-modal link-text="View Instructions" link-type="button">
+    <crowd-tabs>
+        <crow-tab header="Detailed Instructions">
+        <p>
+          You are given three sentences that need to be rewritten so that they use simpler English.
+            This means that you should reduce the number of difficult words or idioms, simplify complex phrasing,
+            delete information that may not be relevant, and make the sentence more straight forward.
+            This could be accomplished by applying different transformations to the original sentences.
+            In this task, we ask you to only use: paraphrasing, compression and/or sentence splitting.
+            We explain each of these transformations below and provide examples.
+        </p>
+
+        <h4> Paraphrasing</h4>
+        <p>This involves changing complex words or phrases for simpler synonyms.
+            For example:
+        </p>
+
+        <table border="1">
+            <tr>
+                <th>Original</th>
+                <th>Simplification</th>
+            </tr>
+            <tr>
+                <td>From <b>its inception</b>, it was <b>designated</b> a duty-free port <b>and vied</b> with the neighboring Sultanate of Pattani for trade.</td>
+                <td>From <b>the start</b>, it was <b>chosen to be</b> a duty-free port <b>to compete</b> with the neighboring Sultanate of Pattani for trade.</td>
+            </tr>
+        </table>
+        <i>*the bold facing here is for ease of readability and will not be used in the task.</i>
+
+        <p>
+            When paraphrasing, try to preserve as much of the original meaning as possible.
+            Proper names (e.g. John, Microsoft, Apple), geographical locations (e.g. Northern Europe, Sultanate of Pattani),
+            specialized technical terms (e.g. polymorphism, electro-pneumatic) or any word you don't know should be kept whenever possible.
+            You should use simpler concepts/words/phrases in your paraphrasing.
+            This means your sentence could potentially have more words than the original.
+        </p>
+
+
+        <h4> Compression</h4>
+        <p>This involves deleting information that may not be relevant to understand the main idea of the sentence.
+            For example:
+        </p>
+
+        <table border="1">
+            <tr>
+                <th>Original</th>
+                <th>Simplification</th>
+            </tr>
+            <tr>
+                <td><b>Think of all the ways</b>> everyone in your household will benefit from your membership in Audubon.</td>
+                <td>Everyone in your household will benefit from membership in Audubon.</td>
+            </tr>
+            <tr>
+                <td>Mr Usta was examined by Dr Raymond Crockett, a <b>Harley Street</b> physician specialising in kidney disease.</td>
+                <td>Mr Usta was examined by Dr Raymond Crockett, a physician specialising in kidney disease.</td>
+            </tr>
+        </table>
+        <i>*the bold facing here is for ease of readability and will not be used in the task.</i>
+
+        <p>
+            When compressing, it is important that the resulting simplification does not alter the original meaning.
+            Also, it is possible to make other small changes to keep the resulting sentence grammatical and fluent.
+        </p>
+
+
+        <h4>Sentence Splitting</h4>
+        <p>This involves splitting a sentence as much as possible into several sentences in places where such a splitting could make the sentence simpler.
+            The resulting sentences, taken together, should mean the same as the original sentence, be grammatical and fluent.
+            For example:
+        </p>
+
+        <table border="1">
+            <tr>
+                <th>Original</th>
+                <th>Simplification</th>
+            </tr>
+            <tr>
+                <td>He was involved in two conversions which turned out to be crucial. </td>
+                <td>He was involved in two conversions. These conversions turned out to be crucial. </td>
+            </tr>
+            <tr>
+                <td>The federal government suspended sales of U.S. savings bonds because Congress hasn't lifted the ceiling on government debt.</td>
+                <td>Congress hasn't lifted the ceiling on government debt. So, the federal government suspended sales of U.S. savings bonds. </td>
+            </tr>
+        </table>
+        <p>
+            As in the example shown, when splitting, it is also possible to make other small changes to keep the resulting text grammatical.
+            Also, if no splitting is possible in a given sentence, leave the sentence as it.
+            The examples provided only show a few possible ways in which a sentence could be split.
+            Feel free to try out other ways.
+        </p>
+
+        <h4>Putting it all together</h4>
+        <p>All the three transformations explained before should be applied whenever possible to simplify the given original sentences.
+        We provide an example where all three transformations were performed:
+        </p>
+
+        <table border="1">
+            <tr>
+                <th>Original</th>
+                <th>Simplification</th>
+            </tr>
+            <tr>
+                <td>If you are under the age of 18, you are required to complete at least 65 hours of behind-the-wheel skill-building including 10 hours of nighttime driving</td>
+                <td>If you are under 18, you must complete 65 hours of practice driving. This must include at least 10 hours of driving at night. </td>
+            </tr>
+        </table>
+
+        <p>The transformations performed were:</p>
+
+        <table border="1">
+            <tr>
+                <th>Original</th>
+                <th>Simplification</th>
+                <th>Transformation</th>
+            </tr>
+            <tr>
+                <td><i>under the age of 18</i></td>
+                <td><i>under 18</i></td>
+                <td>compression</td>
+            </tr>
+            <tr>
+                <td><i>behind-the-wheel skill-building</i></td>
+                <td><i>practice driving</i></td>
+                <td>paraphrasing</td>
+            </tr>
+            <tr>
+                <td><i>nighttime driving</i></td>
+                <td><i>driving at night</i></td>
+                <td>paraphrasing</td>
+            </tr>
+            <tr>
+                <td><i>you are required to</i></td>
+                <td><i>you must</i></td>
+                <td>paraphrasing</td>
+            </tr>
+            <tr>
+                <td><i>including</i></td>
+                <td><i>. This must include</i></td>
+                <td>splitting</td>
+            </tr>
+        </table>
+        <p>
+        We will manually check a fraction of your answers and spammers will be rejected.
+        Read the provided instructions carefully and make sure you understand the task before beginning.
+        </p>
+        <p>Have fun!</p>
+        </crow-tab>
+    </crowd-tabs>
+    </crowd-modal>
+
+	<p>We ask you to rewrite each original sentence in order to make it easier to understand by non-native speakers of English.
+			You can do so by replacing complex words with simpler synonyms (i.e. paraphrasing), deleting unimportant information (i.e. compression),
+			and/or splitting a long complex sentence into several simpler ones.
+			The final simplified sentences need to be grammatical, fluent, and retain the main ideas of their original counterparts without altering their meanings.
+			More detailed instructions and examples can be found by clicking the "View Instructions" button.
+	</p>
+    <p>Carefully read the instructions provided and then <strong>simplify</strong> the following sentences:</p>
+
+    <!-- Your original sentence will be substituted for the "orig_sent" variable when you
+           publish a batch with an input file containing multiple original sentences  -->
+    <fieldset>
+        <legend>Sentence 1 of 3</legend>
+        <p><strong>Original: </strong>The second largest city of Russia and one of the world's major cities, St . Petersburg has played a vital role in Russian history.</p>
+        <crowd-input name="simp_sent_1" placeholder="Type the Simplification here..." required></crowd-input>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sentence 2 of 3</legend>
+        <p><strong>Original: </strong>US and European regulators gave approval to the purchase in February.</p>
+        <crowd-input name="simp_sent_2" placeholder="Type the Simplification here..." required></crowd-input>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sentence 3 of 3</legend>
+        <p><strong>Original: </strong>Wednesday afternoon, the Philippines said it had agreed with China to diplomatically resolve the dispute, according to the Associated Press.</p>
+        <crowd-input name="simp_sent_3" placeholder="Type the Simplification here..." required></crowd-input>
+    </fieldset>
+
+    <h4>Suggestions (Optional)</h4>
+    <p>If you have any suggestions regarding the task, please provide them below:</p>
+    <crowd-text-area name="suggestions" placeholder="Type your suggestions here..."></crowd-text-area>
+</crowd-form>
+
