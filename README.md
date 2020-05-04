@@ -8,7 +8,7 @@ ASSET: A Dataset for Tuning and Evaluation of Sentence Simplification Models wit
 Fernando Alva-Manchego, Louis Martin, Antoine Bordes, Carolina Scarton, Benoît Sagot, Lucia Specia
 ```
 
-The corpus is composed of 2000 validation and 359 test original sentences `asset/asset.{valid,test}.orig` that were each simplified 10 times by different annotators `asset/asset.{valid.test}.simp.{0,1,2,3,4,5,6,7,8,9}` (one sample per line).
+The corpus is composed of 2000 validation and 359 test original sentences `dataset/asset.{valid,test}.orig` that were each simplified 10 times by different annotators `dataset/asset.{valid.test}.simp.{0,1,2,3,4,5,6,7,8,9}` (one sample per line).
 
 We recommend that you evaluate your Text Simplification (TS) system using this dataset and traditional TS metrics with the [EASSE](https://github.com/feralvam/easse) package.
 
