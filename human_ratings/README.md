@@ -1,6 +1,6 @@
 # Human Ratings of Simplifications
 
-In this folder you will find the ratings that where used in section 6 "Evaluating Evaluation Metrics" of the paper.
+In this folder you will find the ratings that were used in section 6 "Evaluating Evaluation Metrics" of the paper.
 
 
 
