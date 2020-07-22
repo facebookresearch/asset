@@ -1,0 +1,457 @@
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <style>
+        #consent-form-container{
+            background: #fff;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            position:absolute;
+            height:100%;
+            width:100%;
+            z-index:999;
+        }
+    </style>
+  <script>
+        function consentFormSubmitted(){
+           document.getElementById("consent-form").style.display = "none";
+           document.getElementById("task").style.display = "block";
+        }
+    </script>
+</head>
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<div class="consent-form container" id="consent-form">
+  <h2>Can you rate the quality of simplified sentences in English?</h2>
+  <h4>Information Sheet</h4>
+  <p>We invite fluent English speakers to participate in an experiment on rating the quality of simplified sentences. </p>
+  <p>Before you decide to participate, it is important that you understand the purpose of the research
+        you will be participating in and what will happen to the data collected from you.</p>
+  <p>The study aims to collect ratings for simplifications of sentences that originally could have been considered difficult
+        to understand by non-native speakers of English.
+        The resulting dataset will be used to develop models and metrics that could potentially produce these scores automatically.</p>
+  <p>Participants must be:
+        <ul><li>Over 18 years of age.</li><li>Fluent English speakers; both native and non-native speakers are welcome to participate.</li></ul></p>
+  <p>
+        How will the experiment work?
+    </p>
+  <p>
+        You will be reading sentences extracted from articles in Wikipedia.
+        The nature of the sentences and their language are such that they are unlikely to cause offence, disturbance or distress to readers from a general audience.
+        However, if you feel uncomfortable with the content of any of the sentences, please let us know in the Suggestions box provided.
+    </p>
+  <p>
+        It is important to emphasize that the data collected will be made available for other researchers.
+        In addition, the results of this investigation may be published in scientific journals or conferences and may be used in further studies.
+    </p>
+  <p>Please read the instructions carefully.</p>
+  <p>Thank you,</p>
+  <h4>Consent Form</h4>
+  <p>In order to participate in this experiment, you must:</p>
+  <ul>
+    <li>Be at least 18 years old and competent to provide consent.</li>
+    <li>Have read and understood the the Information Sheet explaining the research project.</li>
+    <li>Agree for the data collected to be used in anonymised way in the future</li>
+    <li>Agree to take part in the research previously described.</li>
+  </ul>
+  <button id="consent-submit-button" type="button" class="btn btn-primary" onclick="consentFormSubmitted()">
+        I accept to participate in this research
+    </button>
+</div>
+<crowd-form answer-format="flatten-objects" id="task" style="display:none" class="container">
+  <fieldset>
+    <legend>
+      <strong>Instructions</strong>
+    </legend>
+    <p>
+            In this task you will see triples of an Original and two Simplified sentences where the Simplified sentences are a proposed version of the Original one,
+            but that are easier to understand by non-native speakers of English.
+            This means that it uses easier English while also maintaining fluency and grammatically.
+            The goal of the present task is to evaluate the Simplified sentences along three dimensions:
+            adequacy (or meaning preservation), fluency (or grammaticality) and simplicity.
+        </p>
+    <p>
+            Read each triple of sentences and <strong>use the buttons to indicate which proposed simplification agrees the most with the statement.</strong> 
+            Use the "Similar" button as little as possible, and <strong>ONLY</strong> if you really cannot determine which sentence is best.
+        </p>
+    <p>
+            You are required to choose an answer for all items. Spammers (not answering, answering randomly) will be automatically rejected.
+        </p>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 1 out of 10</legend>
+    <div style="display:none;">${sample_id_0}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_0}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_0}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_0}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="0_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="0_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="0_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="0_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="0_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="0_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="0_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="0_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="0_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 2 out of 10</legend>
+    <div style="display:none;">${sample_id_1}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_1}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_1}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_1}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="1_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="1_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="1_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="1_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="1_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="1_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="1_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="1_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="1_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 3 out of 10</legend>
+    <div style="display:none;">${sample_id_2}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_2}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_2}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_2}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="2_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="2_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="2_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="2_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="2_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="2_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="2_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="2_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="2_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 4 out of 10</legend>
+    <div style="display:none;">${sample_id_3}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_3}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_3}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_3}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="3_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="3_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="3_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="3_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="3_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="3_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="3_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="3_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="3_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 5 out of 10</legend>
+    <div style="display:none;">${sample_id_4}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_4}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_4}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_4}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="4_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="4_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="4_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="4_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="4_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="4_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="4_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="4_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="4_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 6 out of 10</legend>
+    <div style="display:none;">${sample_id_5}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_5}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_5}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_5}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="5_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="5_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="5_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="5_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="5_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="5_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="5_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="5_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="5_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 7 out of 10</legend>
+    <div style="display:none;">${sample_id_6}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_6}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_6}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_6}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="6_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="6_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="6_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="6_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="6_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="6_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="6_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="6_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="6_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 8 out of 10</legend>
+    <div style="display:none;">${sample_id_7}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_7}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_7}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_7}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="7_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="7_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="7_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="7_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="7_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="7_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="7_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="7_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="7_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 9 out of 10</legend>
+    <div style="display:none;">${sample_id_8}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_8}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_8}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_8}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="8_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="8_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="8_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="8_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="8_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="8_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="8_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="8_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="8_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class="mt-4">
+    <legend>Sentence 10 out of 10</legend>
+    <div style="display:none;">${sample_id_9}</div>
+    <div class="mt-2">
+      <div class="container, mb-3">
+        <p><strong>Original: </strong>${orig_sent_9}</p>
+        <p><strong>Simplification A: </strong>${simp_sent_a_9}</p>
+        <p><strong>Simplification B: </strong>${simp_sent_b_9}</p>
+      </div>
+      <div class="container">
+        <div class="mt-2 mb-2">
+          <div>Which sentence <strong>expresses the original meaning</strong> the <strong>best</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="9_meaning_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="9_meaning_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="9_meaning_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which sententence is <strong>more fluent</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="9_fluency_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="9_fluency_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="9_fluency_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+        <div class="mt-2 mb-2">
+          <div>Which simplification is <strong>easier to read and understand</strong>?</div>
+          <crowd-radio-group>
+            <crowd-radio-button name="9_simplicity_a">Simplification A</crowd-radio-button>
+            <crowd-radio-button name="9_simplicity_b">Simplification B</crowd-radio-button>
+            <crowd-radio-button name="9_simplicity_similar">Similar</crowd-radio-button>
+          </crowd-radio-group>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <h4>Suggestions (Optional)</h4>
+    <p>If you have any suggestions regarding the task, please provide them below:</p>
+    <crowd-text-area name="suggestions" placeholder="Type your suggestions here..."></crowd-text-area>
+  </fieldset>
+</crowd-form>
