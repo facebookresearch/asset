@@ -1,8 +1,24 @@
 # Human Ratings of Simplifications
 
-In this folder you will find the ratings that were used in section 6 "Evaluating Evaluation Metrics" of the paper.
+In this folder you will find the ratings that were used in sections 5 "Rating Simplifications in ASSET" and 6 "Evaluating Evaluation Metrics" of the paper.
 
+# Section 5 - "Rating Simplifications in ASSET"
 
+File: `asset_pairwise_comparisons_with_turkcorpus_and_hsplit.csv`
+
+## Collection of Human Ratings
+Description extracted from the paper:
+> For each of the 359 original sentences in the test set, we randomly sampled one reference simplification from ASSET and one from TurkCorpus, and then asked qualified workers to choose which simplification answers best each of the following questions:  
+• Fluency: Which sentence is more fluent?  
+• Meaning: Which sentence expresses the original meaning the best?  
+• Simplicity: Which sentence is easier to read and understand?
+Workers were also allowed to judge simplifications as “similar” when they could not determine which one was better. The same process was followed to compare simplifications in ASSET against those in HSplit.
+
+Details in 
+
+# Section 6 - "Evaluating Evaluation Metrics"
+
+File: `human_ratings.csv`
 
 ## Collection of Human Ratings
 Description extracted from the paper:
